@@ -1,0 +1,48 @@
+GLB------------------------------------------------ NEXUS --------------------------------------------------2019
+
+
+
+---------------- TUTO -----------------
+
+
+
+- JAVA  ----> 
+- 	sudo yum install java-1.8.0-openjdk.x86_64
+			OR
+	wget https://download.java.net/java/GA/jdk12/GPL/openjdk-12_linux-x64_bin.tar.gz	
+ 	- tar xzvf openjdk-12_linux-x64_bin.tar.gz
+	- mv jdk-12 /opt/java
+	- touch /etc/profile.d/jdk.sh
+	- sudo vim /etc/profile.d/jdk.sh
+ 
+		JAVA_HOME=/opt/jdk
+		PATH=$PATH:$JAVA_HOME/bin
+		export PATH JAVA_HOME
+	-source /etc/profile
+
+
+---- EVIRONNEMENT -----
+
+
+- sudo mkdir /workspace
+- cd /workspace
+
+
+- NEXUS ----> sudo wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+
+- 	sudo tar -xvf nexus-3.0.2-02-unix.tar.gz
+- 	sudo mv nexus-3.0.2-02 /opt/nexus
+- 	sudo adduser nexus
+- 	sudo chown -R nexus:nexus /opt/nexus
+- 	sudo vim /opt/nexus/bin/nexus.rc
+ 		ajouter ----> run_as_user="nexus"
+- 	sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+- 	sudo chkconfig --add nexus
+- 	sudo chkconfig --levels 345 nexus on
+- 	sudo service nexus start
+
+----> http://localhost:8081 (admin/admin123)
+
+- CLEAN UP 
+- 	sudo rm -rf /workspace/*
+- 	sudo rm -rf /workspace/
